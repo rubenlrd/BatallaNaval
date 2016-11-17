@@ -102,7 +102,5 @@ public class Tablero {
         return "";
     }//fin de metodo
 
+}//finde clase
 
-
-
-}
