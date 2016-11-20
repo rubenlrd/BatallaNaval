@@ -67,7 +67,7 @@ public class Barco {
             }
         }
     }
-
+    //retorna posicion
     public String getPosicion1() {
         return posicion1;
     }
