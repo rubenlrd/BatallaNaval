@@ -1,6 +1,7 @@
 package com.frreutn;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by rmlrd on 6/9/2016.
@@ -13,13 +14,10 @@ public class Tablero {
     private int tocados = 0;
 
     //cargo la matriz por constructor
-
-
     public Tablero() {
+        //llamo al procedimiento cargarMatriz
         cargarMatriz();
     }
-
-
 
     //mostrar tablero
     public void mostrarTablero(){
@@ -32,11 +30,12 @@ public class Tablero {
     }
 
     //cargo en un arrayList la posición de los barcos de la flota
-    //falta controlar que la posición del barco sea continua
-    public void cargarBarco(String y, String x){
+    public void cargarBarco(String pos1, String pos2, int orientacion){
         if (!(flota.size()>=3)) {
             barco = new Barco();
-            barco.setPosicion(y,x);
+            barco.setOrientacion(orientacion);
+            barco.setPosicion1(pos1);
+            barco.setPosicion2(pos2);
             flota.add(barco);
         }else{
             System.out.println("Flota completa");
@@ -55,18 +54,24 @@ public class Tablero {
     //posicion del ataque enemigo
     public void ataqueEnemigo(String tiro){
         String uno = tiro.substring(0);
-        String num = convertir(uno);
-        int i = Integer.parseInt(num);
-        String dos = tiro.substring(2);
+        int i = Integer.parseInt(uno);
+        String dos = tiro.substring(1);
         int j = Integer.parseInt(dos);
 
-        for (Barco naves : flota) {
-            if (naves.getPosicion().equals(tiro)) {
+        for (Barco nave : flota) {
+            if (nave.getPosicion1().equals(tiro)) {
                 tablero[i][j] = "T";
                 tocados++;
-            }else {
-                tablero[i][j] = "A";
+
+            }else if (nave.getPosicion2().equals(tiro)){
+
+            }else{
+                //tablero[i][j] = "A";
             }
+
+//            if(nave.getEstado().equals("bueno")){
+//                nave.setEstado("averiado");
+//            }
         }
 
         if(tocados==6){
@@ -89,18 +94,40 @@ public class Tablero {
 //
 //    }
 
-    //metodo para convertir una letra en numero
-    public String convertir(String num){
-        String convertir[] = {"a", "b", "c", "d","e", "f", "g", "h", "i", "j"};
-        String valor;
-        for (int i=0;i<=convertir.length;i++){
-            if (convertir[i].equalsIgnoreCase(num)){
-                valor = String.valueOf(i);
-                return valor;
-            }
-        }
-        return "";
-    }//fin de metodo
+//    //metodo para convertir una letra en numero
+//    public String convertir(String num){
+//        String convertir[] = {"a", "b", "c", "d","e", "f", "g", "h", "i", "j"};
+//        String valor;
+//        for (int i=0;i<=convertir.length;i++){
+//            if (convertir[i].equalsIgnoreCase(num)){
+//                valor = String.valueOf(i);
+//                return valor;
+//            }
+//        }
+//        return "";
+//    }//fin de metodo
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tablero tablero1 = (Tablero) o;
+
+        if (tocados != tablero1.tocados) return false;
+        if (!Arrays.deepEquals(tablero, tablero1.tablero)) return false;
+        if (barco != null ? !barco.equals(tablero1.barco) : tablero1.barco != null) return false;
+        return flota != null ? flota.equals(tablero1.flota) : tablero1.flota == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.deepHashCode(tablero);
+        result = 31 * result + (barco != null ? barco.hashCode() : 0);
+        result = 31 * result + (flota != null ? flota.hashCode() : 0);
+        result = 31 * result + tocados;
+        return result;
+    }
 }//finde clase
 

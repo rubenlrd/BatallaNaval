@@ -32,6 +32,7 @@ public class Main {
             String fila2, columna2;
             String posicion1, posicion2;
             String num1, num2;
+            int orientacion;
             System.out.println("Ingrese fila y columna");
             fila1 = ent.next();
             num1 = convertir(fila1);
@@ -43,7 +44,9 @@ public class Main {
             num2 = convertir(fila2);
             columna2 = ent.next();
             posicion2 = num2 + "," +columna2;
-            jugador1.cargarBarco(posicion1, posicion2);
+            System.out.println("Ingrese (0 - posision horizontal | 1 - posicion vertical");
+            orientacion = ent.nextInt();
+            jugador1.cargarBarco(posicion1, posicion2, orientacion);
         }
 
         jugador1.mostrarFlota();
@@ -59,6 +62,7 @@ public class Main {
             String fila2, columna2;
             String posicion1, posicion2;
             String num1, num2;
+            int orientacion2;
 
             System.out.println("Ingrese fila y columna");
             fila1=ent.next();
@@ -72,8 +76,12 @@ public class Main {
             columna2 = ent.next();
             posicion2 = num2 + "," + columna2;
 
-            jugador2.cargarBarco(posicion1, posicion2);
+            System.out.println("Ingrese (0 - posision vertical | 1 - posicion horizontal");
+            orientacion2 = ent.nextInt();
+            jugador2.cargarBarco(posicion1, posicion2, orientacion2);
+
         }
+        jugador2.mostrarFlota();
 
         do {
             System.out.println("Juega Jugador 1");

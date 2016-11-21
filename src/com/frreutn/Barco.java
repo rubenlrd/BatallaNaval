@@ -31,37 +31,37 @@ public class Barco {
 
     //ingreso la primera posición del barco
     public void setPosicion1(String posicion1) {
+
         this.posicion1 = posicion1;
     }
-
 
     //valido las adyacencias para armar la posicion del barco
     public void setPosicion2(String posicion2){
         //calculo la adyacencia de la primera posición
         int adyacencia1, adyacencia2, fila, columna;
         String sub, num1, num2;
-        if (orientacion == 0){
-            sub = posicion1.substring(0);
+        if (orientacion == 1){
+            sub = posicion1.substring(0,1);
             fila = Integer.parseInt(sub);
             adyacencia1 = fila - 1;
             num1= String.valueOf(adyacencia1);
             adyacencia2 = fila + 1;
             num2 = String.valueOf(adyacencia2);
             //vuelvo a armar el la posicion
-            num1 = num1 + "," + posicion1.substring(1);
-            num2 = num2 + "," + posicion1.substring(1);
+            num1 = num1 + posicion1.substring(1);
+            num2 = num2 + posicion1.substring(1);
            if (posicion2.equals(num1)|| posicion2.equals(num2)){
                this.posicion2 = posicion2;
            }
-        }else if (orientacion == 1){
-            sub = posicion1.substring(1);
+        }else if (orientacion == 0){
+            sub = posicion1.substring(2);
             columna = Integer.parseInt(sub);
             adyacencia1 = columna - 1;
             num1 = String.valueOf(adyacencia1);
             adyacencia2 = columna + 1;
             num2 = String.valueOf(adyacencia2);
-            num1 = posicion1.substring(0) + "," + num1;
-            num2 = posicion1.substring(0) + "," + num2;
+            num1 = posicion1.substring(0,1) + "," + num1;
+            num2 = posicion1.substring(0,1) + "," + num2;
             if (posicion2.equals(num1)|| posicion2.equals(num2)) {
                 this.posicion2 = posicion2;
             }
@@ -95,7 +95,6 @@ public class Barco {
         if (!posicion1.equals(barco.posicion1)) return false;
         if (!posicion2.equals(barco.posicion2)) return false;
         return estado.equals(barco.estado);
-
     }
 
     @Override

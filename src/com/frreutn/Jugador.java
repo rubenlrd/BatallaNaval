@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * Created by rmlrd on 6/9/2016.
  */
 public class Jugador {
-    String nombre;
-    Tablero tablero;
+    private String nombre;
+    private Tablero tablero;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
@@ -18,8 +18,8 @@ public class Jugador {
         tablero.mostrarTablero();
     }
 
-    public void cargarBarco(String y, String x){
-        tablero.cargarBarco(y, x);
+    public void cargarBarco(String posicion1, String posicion2, int orientacion){
+        tablero.cargarBarco(posicion1, posicion2, orientacion);
     }
 
     public void mostrarFlota(){
