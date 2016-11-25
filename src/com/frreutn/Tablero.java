@@ -53,14 +53,14 @@ public class Tablero {
 
     //posicion del ataque enemigo
     public void ataqueEnemigo(String tiro){
-        String uno = tiro.substring(0);
-        int i = Integer.parseInt(uno);
-        String dos = tiro.substring(1);
-        int j = Integer.parseInt(dos);
+//        String uno = tiro.substring(0);
+//        int i = Integer.parseInt(uno);
+//        String dos = tiro.substring(1);
+//        int j = Integer.parseInt(dos);
 
         for (Barco nave : flota) {
             if (nave.getPosicion1().equals(tiro)) {
-                tablero[i][j] = "T";
+                //tablero[i][j] = "T";
                 tocados++;
 
             }else if (nave.getPosicion2().equals(tiro)){
